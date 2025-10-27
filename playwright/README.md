@@ -138,6 +138,39 @@ pytest -k test_add_a_todo_item
 pytest --numprocesses 2
 ```
 
+## 跟踪查看器
+
+### 记录跟踪
+
+```
+# 启动跟踪功能
+context.tracing.start(snapshots=True, sources=True, screenshots=True)
+# 结束跟踪
+context.tracing.stop(path="trace.zip")
+```
+
+可以通过使用 `--tracing` 标志运行测试来记录跟踪。
+
+```bash
+pytest --tracing on
+```
+
+用于跟踪的选项包括：
+
+- `on`：记录每个测试的跟踪信息
+- `off`：不记录痕迹。（默认）
+- `retain-on-failure`：记录每个测试的跟踪信息，但删除所有成功测试运行的跟踪信息。
+
+这将记录跟踪并将其放入 `test-results` 目录中名为 `trace.zip` 的文件中。
+
+### 打开跟踪
+
+你可以使用 Playwright CLI 或在 [`trace.playwright.dev`](https://trace.playwright.dev/) 上的浏览器中打开已保存的跟踪。确保添加跟踪 zip 文件所在位置的完整路径。打开后，你可以点击每个操作，或使用时间轴查看每个操作前后的页面状态。你还可以在测试的每个步骤中检查日志、源和网络。跟踪查看器会创建一个 DOM 快照，以便你可以与其进行全面交互，例如打开开发者工具等。
+
+```bash
+playwright show-trace trace.zip
+```
+
 ## Pytest 插件参考
 
 ### 用法
