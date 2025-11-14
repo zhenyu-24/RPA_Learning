@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册表单 - Example.com</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 1em;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #667eea;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .required::after {
+            content: " *";
+            color: #e74c3c;
+        }
+
+        .tooltip {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>用户注册表单</h1>
+            <p>请填写以下信息完成注册</p>
+        </div>
+
+        <form id="registrationForm">
+            <!-- 基本信息 -->
+            <div class="form-group">
+                <label for="username" class="required">用户名</label>
+                <input type="text" id="username" name="username"
+                       aria-label="请输入您的用户名"
+                       placeholder="请输入用户名（4-20个字符）" required>
+                <div class="tooltip">用户名用于登录和显示，注册后不可修改</div>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="required">电子邮箱</label>
+                <input type="email" id="email" name="email"
+                       aria-label="请输入您的电子邮箱"
+                       placeholder="example@email.com" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone" class="required">手机号码</label>
+                    <input type="tel" id="phone" name="phone"
+                           aria-label="请输入您的手机号码"
+                           placeholder="13800138000" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="birthdate">出生日期</label>
+                    <input type="text" id="birthdate" name="birthdate"
+                           aria-label="请选择您的出生日期"
+                           placeholder="YYYY-MM-DD">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="required">密码</label>
+                <input type="password" id="password" name="password"
+                       aria-label="请输入您的密码"
+                       placeholder="请输入密码（至少8位）" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm_password" class="required">确认密码</label>
+                <input type="password" id="confirm_password" name="confirm_password"
+                       aria-label="请再次输入密码"
+                       placeholder="请再次输入密码" required>
+            </div>
+
+            <!-- 个人资料 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="country">国家</label>
+                    <select id="country" name="country" aria-label="请选择您所在的国家">
+                        <option value="">请选择国家</option>
+                        <option value="China">中国</option>
+                        <option value="USA">美国</option>
+                        <option value="Japan">日本</option>
+                        <option value="UK">英国</option>
+                        <option value="Germany">德国</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">城市</label>
+                    <select id="city" name="city" aria-label="请选择您所在的城市">
+                        <option value="">请选择城市</option>
+                        <option value="Beijing">北京</option>
+                        <option value="Shanghai">上海</option>
+                        <option value="Guangzhou">广州</option>
+                        <option value="Shenzhen">深圳</option>
+                        <option value="Hangzhou">杭州</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>性别</label>
+                <div class="radio-group" role="radiogroup" aria-label="请选择您的性别">
+                    <div class="radio-item">
+                        <input type="radio" id="gender_male" name="gender" value="male" aria-labelledby="male_label">
+                        <label for="gender_male" id="male_label">男</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="gender_female" name="gender" value="female" aria-labelledby="female_label">
+                        <label for="gender_female" id="female_label">女</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="gender_other" name="gender" value="other" aria-labelledby="other_label">
+                        <label for="gender_other" id="other_label">其他</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 偏好设置 -->
+            <div class="form-group">
+                <label>订阅偏好</label>
+                <div class="checkbox-group" role="group" aria-label="请选择您的订阅偏好">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="newsletter" name="newsletter" value="true" aria-labelledby="newsletter_label">
+                        <label for="newsletter" id="newsletter_label">订阅新闻邮件</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="promotions" name="promotions" value="true" aria-labelledby="promotions_label">
+                        <label for="promotions" id="promotions_label">接收促销信息</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="notifications" name="notifications" value="true" aria-labelledby="notifications_label">
+                        <label for="notifications" id="notifications_label">推送通知</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 其他信息 -->
+            <div class="form-group">
+                <label for="comments">个人简介</label>
+                <textarea id="comments" name="comments"
+                          aria-label="请输入您的个人简介"
+                          placeholder="请简要介绍一下自己..."></textarea>
+            </div>
+
+            <!-- 协议 -->
+            <div class="form-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="agree_terms" name="agree_terms" value="true" required aria-labelledby="terms_label">
+                    <label for="agree_terms" id="terms_label" class="required">
+                        我已阅读并同意 <a href="javascript:void(0)" onclick="showTerms()">用户协议</a> 和 <a href="javascript:void(0)" onclick="showPrivacy()">隐私政策</a>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 提交按钮 -->
+            <div class="submit-section">
+                <button type="submit" class="submit-btn" aria-label="提交表单">
+                    提交注册
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
